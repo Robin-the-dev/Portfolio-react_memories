@@ -4,12 +4,17 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+import postRoutes from './routes/posts.js';
+
 dotenv.config();
 
 // create app object via express
 const app = express();
 
 // apply middleware to app
+
+// load the posts router module in the app
+app.use('/posts', postRoutes);
 
 // json() 함수는 POST나 PUT으로 요청했을때 헤더의 content-type이 json 일때
 // (보통 javascript를 이용한 AJAX통신을 사용했을 때, axios 등 등)

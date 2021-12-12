@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+// import routes
 import postRoutes from './routes/posts.js';
 
 dotenv.config();
@@ -14,6 +15,9 @@ const app = express();
 // apply middleware to app
 
 // load the posts router module in the app
+// posts route를 postRoutes로 import해서 middleware로 app에 추가하는 코드인데
+// 첫번째 파라미터로 문자열로 '/posts'를 줌으로써 모든 posts route의 시작점은
+// localhost:4000/posts가 된다. (localhost:4000/ 부터 시작하는게 아니다.)
 app.use('/posts', postRoutes);
 
 // json() 함수는 POST나 PUT으로 요청했을때 헤더의 content-type이 json 일때

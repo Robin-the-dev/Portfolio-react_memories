@@ -14,6 +14,9 @@ const app = express();
 
 // apply middleware to app
 
+// cors must be specified before routes
+app.use(cors());
+
 // load the posts router module in the app
 // posts route를 postRoutes로 import해서 middleware로 app에 추가하는 코드인데
 // 첫번째 파라미터로 문자열로 '/posts'를 줌으로써 모든 posts route의 시작점은
@@ -30,7 +33,6 @@ app.use(bodyParser.json({limit: '30mb', extended: true}));
 // body 부분을 파싱해서 req.body로 접근 가능하게 해준다.
 // reference: https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true}));
-app.use(cors());
 
 // mongoDB connection url
 const CONNECTION_URL = process.env.CONNECTION_URL;

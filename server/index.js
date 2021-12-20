@@ -14,14 +14,9 @@ const app = express();
 
 // apply middleware to app
 
-// cors must be specified before routes
+// the ORDER is matter!!!
+// to apply cors and bodyParser, those must be located before the routers!!!
 app.use(cors());
-
-// load the posts router module in the app
-// posts route를 postRoutes로 import해서 middleware로 app에 추가하는 코드인데
-// 첫번째 파라미터로 문자열로 '/posts'를 줌으로써 모든 posts route의 시작점은
-// localhost:4000/posts가 된다. (localhost:4000/ 부터 시작하는게 아니다.)
-app.use('/posts', postRoutes);
 
 // json() 함수는 POST나 PUT으로 요청했을때 헤더의 content-type이 json 일때
 // (보통 javascript를 이용한 AJAX통신을 사용했을 때, axios 등 등)
@@ -33,6 +28,12 @@ app.use(bodyParser.json({limit: '30mb', extended: true}));
 // body 부분을 파싱해서 req.body로 접근 가능하게 해준다.
 // reference: https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true}));
+
+// load the posts router module in the app
+// posts route를 postRoutes로 import해서 middleware로 app에 추가하는 코드인데
+// 첫번째 파라미터로 문자열로 '/posts'를 줌으로써 모든 posts route의 시작점은
+// localhost:4000/posts가 된다. (localhost:4000/ 부터 시작하는게 아니다.)
+app.use('/posts', postRoutes);
 
 // mongoDB connection url
 const CONNECTION_URL = process.env.CONNECTION_URL;

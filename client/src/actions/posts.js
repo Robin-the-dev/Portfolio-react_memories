@@ -1,6 +1,6 @@
 import * as api from '../api';
 
-// Action Creators (Action creator is a function thar returns action.)
+// Action Creators (Action creator is a function that returns action.)
 export const getPosts = () => async (dispatch) => {
 	// needs to be enclosed by try() and catch() function
 	try {

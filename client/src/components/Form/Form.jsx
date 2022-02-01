@@ -17,7 +17,7 @@ const Form = () => {
 		e.preventDefault();
 
 		dispatch(createPost(postData));
-		setPostData({creator: '', title: '', message: '', tags: '', selectedFile: ''});
+		clear();
 	}
 	
 	const clear = () => {

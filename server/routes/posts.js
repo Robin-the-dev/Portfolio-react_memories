@@ -1,7 +1,7 @@
 import express from 'express';
 
 // import controllers
-import {getPosts, createPost} from '../controllers/posts.js';
+import {getPosts, createPost, updatePost} from '../controllers/posts.js';
 
 // set up router middleware
 const router = express.Router();
@@ -22,5 +22,8 @@ router.get('/', getPosts);
 
 // POST method
 router.post('/', createPost);
+
+// PATCH method
+router.patch('/:id', updatePost);
 
 export default router;

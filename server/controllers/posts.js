@@ -1,4 +1,5 @@
 import PostMessage from '../models/postMessage.js';
+import mongoose from 'mongoose';
 
 // implement CRUD logic here and export them as function
 
@@ -25,4 +26,20 @@ export const getPosts = async (req, res) => {
 	} catch(error) {
 		res.status(404).json({message: error.message});
 	}
+}
+
+// UPDATE
+export const updatePost = async (req, res) => {
+  try {
+	const id = req.params.id; // Same as `const {id} = req.params;`
+	const post = req.body;
+
+	if(!mongoose.isValidObjectId(id)) throw new Error('No post with that ID');
+
+	const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {new: true});
+
+	res.status(200).json(updatedPost);
+  } catch(error) {
+	res.status(404).json({message: error.message});
+  }
 }

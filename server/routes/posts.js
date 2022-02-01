@@ -1,7 +1,7 @@
 import express from 'express';
 
 // import controllers
-import {getPosts, createPost, updatePost} from '../controllers/posts.js';
+import {getPosts, createPost, updatePost, deletePost, likePost} from '../controllers/posts.js';
 
 // set up router middleware
 const router = express.Router();
@@ -25,5 +25,11 @@ router.post('/', createPost);
 
 // PATCH method
 router.patch('/:id', updatePost);
+
+// DELETE method
+router.delete('/:id', deletePost);
+
+// PATCH method to update like count
+router.patch('/:id/likePost', likePost);
 
 export default router;
